@@ -31,3 +31,15 @@ Ces contrôles valident l’implémentation dans les domaines décrits. Ils ne c
 - [JTEKT — durée nominale des roulements](https://koyo.jtekt.co.jp/en/support/bearing-knowledge/5-2000.html)
 - [NASA — Fastener Design Manual](https://ntrs.nasa.gov/citations/19900009424)
 - [OSG — tableaux de perçage pour taraudage](https://osgtool.com/literature/charts/)
+
+
+## Extension du 16 septembre 2026 — quatre outils
+
+Références croisées avec les cours consultés de mécanique des fluides (Arts et Métiers, T. Marcel-Mathey), Actionneurs (ISTP/ENSAM) et Vibrations (GMP, F. Toussaint). Aucun document de cours privé n’est publié.
+
+- Vérins : surfaces pleine/annulaire, pressions relatives et frottement explicite. Référence fabricant : https://labvolt.festo.com/downloads/89791_F0.pdf ; complément : https://www.festo.com/net/supportportal/files/10203/actuators . Cas 50/20 mm à 6 bar sans contre-pression : 1178,097245 N en sortie. Le frottement n’est pas fixé arbitrairement à 10 %.
+- Pertes de charge : Darcy–Weisbach, λ=64/Re et résolution de Colebrook par bissection. Références : https://www.energy.gov/ehss/articles/doe-hdbk-10123-92 et https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.2294.pdf . Vérification indépendante laminaire par Hagen–Poiseuille (81,487331 Pa pour 0,036 m³/h, D=10 mm, L=2 m, μ=1 mPa·s). Cas Colebrook Re=100000, ε/D=0,0001 : λ=0,0185138661. Zone 2300≤Re<4000 exclue ; aucun mélange arbitraire des corrélations.
+- Pompes : bilan ρgQH, rendements pompe et moteur distincts. Référence : https://www1.eere.energy.gov/manufacturing/tech_assistance/pdfs/pump.pdf . À 3,6 m³/h et 10 m, ρ=1000 : 98,1 W hydrauliques ; rendements 50 % et 80 % : 245,25 W électriques. Hors sélection constructeur et NPSH.
+- Vibrations : oscillateur linéaire à 1 ddl, réponse à une force harmonique, amplitude crête et retard de phase avec atan2. Référence P. Steeneken (TU Delft), section 13.4, équation 13.65 : https://eng.libretexts.org/Bookshelves/Mechanical_Engineering/Introductory_Dynamics%3A_2D_Kinematics_and_Kinetics_of_Point_Masses_and_Rigid_Bodies_%28Steeneken%29/04%3A_Vibrations_and_Strategy/13%3A_Vibrations/13.04%3A_Forced_vibrations . Cas m=1 kg, k=100 N/m, c=2 N·s/m, F=10 N à ω=10 rad/s : X=0,5 m et retard 90°. La résonance non amortie avec force non nulle est refusée. Fréquence libre amortie non affichée pour ζ≥1.
+
+Validation : 43 assertions numériques/cas limites supplémentaires et 48 assertions nouvelles de pages, rapports, navigation, champs invalides et résultats périmés. Les 113 assertions numériques et 135 assertions fonctionnelles existantes restent applicables. Ces tests vérifient les modèles explicités, pas une certification de dimensionnement industriel.

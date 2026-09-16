@@ -23,3 +23,7 @@ Les exports PDF passent par la fenêtre d’impression du navigateur. Les rappor
 Voir [AUDIT.md](AUDIT.md) pour les corrections, les limites et les sources techniques. Le moteur de calcul conserve la précision numérique jusqu’à l’affichage.
 
 Les 113 assertions numériques peuvent être relancées avec Node.js : `node calculations.test.cjs`.
+
+
+## Ajouts du 16 septembre 2026
+Quatre calculateurs : vérins, pertes de charge, pompes et vibrations. Formules et limites accessibles sur chaque page. Validation numérique : `node extensions.test.cjs`. Les exemples sont modifiables ; les rendements, frottements et propriétés des fluides doivent correspondre au cas réel.
