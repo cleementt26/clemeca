@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RDM rapide – CléMéca">
+  <meta name="twitter:description" content="Outils de calculs méca : RDM rapide (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RDM rapide – CléMéca">
+  <meta property="og:description" content="Outils de calculs méca : RDM rapide (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+  <meta property="og:image" content="logo_vincent.png">
+  <link rel="icon" href="logo_vincent.png">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Outils de calculs méca : RDM rapide (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo)."><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>RDM – CléMéca</title><link href="style.css" rel="stylesheet"/><script src="calculations.js" defer></script><script src="app.js" defer></script></head><body><a class="skip" href="#main">Aller au calculateur</a><header><a class="brand" href="index.html"><span class="brand-mark">c<span>m</span></span><span>CléMéca</span></a><span class="header-note">Mécanique & thermique</span></header><div class="container"><nav aria-label="Calculateurs"><div class="nav-label">ESPACE DE CALCUL</div><a href="index.html" class="" ><span class="nav-number">⌂</span>Accueil</a><div class="nav-label divider">CALCULATEURS</div><a href="ajustements.html" class="" ><span class="nav-number">01</span>Ajustements</a><a href="vissage.html" class="" ><span class="nav-number">02</span>Assemblages vissés</a><a href="engrenages.html" class="" ><span class="nav-number">03</span>Engrenages droits</a><a href="torsion.html" class="" ><span class="nav-number">04</span>Arbre en torsion</a><a href="clavette.html" class="" ><span class="nav-number">05</span>Clavette parallèle</a><a href="roulements.html" class="" ><span class="nav-number">06</span>Roulements</a><a href="courroie.html" class="" ><span class="nav-number">07</span>Courroie</a><a href="taraudage.html" class="" ><span class="nav-number">08</span>Perçage & taraudage</a><a href="rdm.html" class="active" aria-current="page"><span class="nav-number">09</span>Résistance des matériaux</a><a href="thermo.html" class="" ><span class="nav-number">10</span>Thermodynamique</a><div class="nav-bottom"><span class="status-dot"></span> Calculs sur cet appareil<br><span>Vos saisies restent dans ce navigateur.</span></div></nav><main class="grid">
+<div class="page-heading"><div class="eyebrow">Résistance <span>/ 09</span></div><h1>Résistance des matériaux</h1></div>
+<section class="card">
+<h2> RDM rapide – poutres usuelles</h2>
+<p class="subtle">Choisissez le cas de charge et la section. Les résultats sont exprimés en mm, N·mm et MPa, quelle que soit l’unité de saisie.</p>
+<div class="row">
+<div class="col-6">
+<label>Cas chargé</label>
+<select id="rdm_case" onchange="rdmToggleSection()">
+<option value="cant_end">Encastrement – charge en bout F</option>
+<option value="cant_udl">Encastrement – charge répartie w</option>
+<option value="ss_mid">Simplement appuyée – charge centrée F</option>
+<option value="ss_udl">Simplement appuyée – charge répartie w</option>
+</select>
+</div>
+<div class="col-3"><label>Longueur L (<span id="u_len">mm</span>)</label><input id="rdm_L" step="1" type="number" value="500"/></div>
+<div class="col-3"><label>Unités</label>
+<select id="rdm_unit" onchange="rdmUnitToggle()">
+<option selected="" value="mm">mm</option>
+<option value="in">inch</option>
+</select>
+</div>
+<div class="col-3"><label>E (GPa)</label><input id="rdm_E" step="1" type="number" value="210"/></div>
+<div class="col-6">
+<label>Définition de section</label>
+<select id="rdm_section" onchange="rdmToggleSection()">
+<option selected="" value="EI">Je connais E et I</option>
+<option value="rect">Rectangulaire (b×h)</option>
+<option value="circ">Circulaire (Ø)</option>
+</select>
+</div>
+<div class="col-2 sec rect" hidden=""><label>b (<span id="u_len_b">mm</span>)</label><input id="rdm_b" step="0.1" type="number" value="40"/></div>
+<div class="col-2 sec rect" hidden=""><label>h (<span id="u_len_h">mm</span>)</label><input id="rdm_h" step="0.1" type="number" value="60"/></div>
+<div class="col-3 sec circ" hidden=""><label>Ø (<span id="u_len_d">mm</span>)</label><input id="rdm_d" step="0.1" type="number" value="30"/></div>
+<div class="col-3 sec EI"><label>I (<span data-unit="I">mm⁴</span>)</label><input id="rdm_I" step="1" type="number" value="1.0e6"/></div>
+<div class="col-3 load F"><label>F (N)</label><input id="rdm_F" step="1" type="number" value="1000"/></div>
+<div class="col-3 load w" hidden=""><label>w (N/mm)</label><input id="rdm_w" step="0.1" type="number" value="2"/></div>
+<div class="col-3"><label>σ admissible (MPa) (optionnel)</label><input id="rdm_sig" placeholder="ex: 160" step="1" type="number"/></div>
+<div class="col-12"><button class="btn" onclick="calcRDM()" type="button">Calculer RDM</button></div>
+</div></section>
+<div class="muted-box" id="out_rdm" style="margin-top:12px" aria-live="polite">
+<details class="formulas-source" style="display:none"><summary class="subtle">Formules utilisées</summary><div class="mono subtle"><ul><li>δ = F·L³/(3·E·I) (encastrée, charge en bout)</li><li>M_max = F·L/4 (appuis simples, charge centrée)</li><li>σ = M·y/I</li></ul></div></details>
+</div></main></div><footer><span>CléMéca</span><span>Par Clément Vincent</span></footer><script defer="True" src="reporting.js"></script></body></html>

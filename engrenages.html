@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content=" Engrenages droits – CléMéca">
+  <meta name="twitter:description" content="Outils de calculs méca :  Engrenages droits (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content=" Engrenages droits – CléMéca">
+  <meta property="og:description" content="Outils de calculs méca :  Engrenages droits (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+  <meta property="og:image" content="logo_vincent.png">
+  <link rel="icon" href="logo_vincent.png">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Outils de calculs méca :  Engrenages droits (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo)."><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Engrenages – CléMéca</title><link href="style.css" rel="stylesheet"/><script src="calculations.js" defer></script><script src="app.js" defer></script></head><body><a class="skip" href="#main">Aller au calculateur</a><header><a class="brand" href="index.html"><span class="brand-mark">c<span>m</span></span><span>CléMéca</span></a><span class="header-note">Mécanique & thermique</span></header><div class="container"><nav aria-label="Calculateurs"><div class="nav-label">ESPACE DE CALCUL</div><a href="index.html" class="" ><span class="nav-number">⌂</span>Accueil</a><div class="nav-label divider">CALCULATEURS</div><a href="ajustements.html" class="" ><span class="nav-number">01</span>Ajustements</a><a href="vissage.html" class="" ><span class="nav-number">02</span>Assemblages vissés</a><a href="engrenages.html" class="active" aria-current="page"><span class="nav-number">03</span>Engrenages droits</a><a href="torsion.html" class="" ><span class="nav-number">04</span>Arbre en torsion</a><a href="clavette.html" class="" ><span class="nav-number">05</span>Clavette parallèle</a><a href="roulements.html" class="" ><span class="nav-number">06</span>Roulements</a><a href="courroie.html" class="" ><span class="nav-number">07</span>Courroie</a><a href="taraudage.html" class="" ><span class="nav-number">08</span>Perçage & taraudage</a><a href="rdm.html" class="" ><span class="nav-number">09</span>Résistance des matériaux</a><a href="thermo.html" class="" ><span class="nav-number">10</span>Thermodynamique</a><div class="nav-bottom"><span class="status-dot"></span> Calculs sur cet appareil<br><span>Vos saisies restent dans ce navigateur.</span></div></nav><main class="grid">
+<div class="page-heading"><div class="eyebrow">Transmission <span>/ 03</span></div><h1>Engrenages droits</h1></div>
+<section class="card">
+<h2> Engrenages droits (module)</h2>
+<p class="subtle">Denture 20°, addendum = m, creux = 1,25m. a = 0,5·m·(z₁+z₂).</p>
+<div class="row">
+<div class="col-4">
+<label>Module m (mm)</label>
+<input id="gear_m" step="0.01" type="number" value="2"/>
+</div>
+<div class="col-4">
+<label>Dents pignon z₁</label>
+<input id="gear_z1" step="1" type="number" value="20" min="6">
+</div>
+<div class="col-4">
+<label>Dents roue z₂</label>
+<input id="gear_z2" step="1" type="number" value="40" min="6">
+</div>
+<div class="col-4">
+<label>Vitesse pignon n₁ (tr/min)</label>
+<input id="gear_n1" step="1" type="number" value="1500" min="1">
+</div>
+<div class="col-12">
+<button class="btn" onclick="calcGear()" type="button">Calculer engrenages</button>
+</div>
+</div>
+<div class="muted-box" id="out_gear" style="margin-top:12px" aria-live="polite">
+<details class="formulas-source" style="display:none"><summary class="subtle">Formules utilisées</summary><div class="mono subtle"><ul><li>m = d / z</li><li>a = m·(z₁ + z₂)/2</li><li>i = z₂/z₁ = n₁/n₂</li></ul></div></details>
+</div>
+</section>
+
+</main></div><footer><span>CléMéca</span><span>Par Clément Vincent</span></footer><script defer="True" src="reporting.js"></script></body></html>

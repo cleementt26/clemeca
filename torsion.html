@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arbre en torsion – CléMéca">
+  <meta name="twitter:description" content="Outils de calculs méca : Arbre en torsion (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Arbre en torsion – CléMéca">
+  <meta property="og:description" content="Outils de calculs méca : Arbre en torsion (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+  <meta property="og:image" content="logo_vincent.png">
+  <link rel="icon" href="logo_vincent.png">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Outils de calculs méca : Arbre en torsion (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo)."><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Torsion – CléMéca</title><link href="style.css" rel="stylesheet"/><script src="calculations.js" defer></script><script src="app.js" defer></script></head><body><a class="skip" href="#main">Aller au calculateur</a><header><a class="brand" href="index.html"><span class="brand-mark">c<span>m</span></span><span>CléMéca</span></a><span class="header-note">Mécanique & thermique</span></header><div class="container"><nav aria-label="Calculateurs"><div class="nav-label">ESPACE DE CALCUL</div><a href="index.html" class="" ><span class="nav-number">⌂</span>Accueil</a><div class="nav-label divider">CALCULATEURS</div><a href="ajustements.html" class="" ><span class="nav-number">01</span>Ajustements</a><a href="vissage.html" class="" ><span class="nav-number">02</span>Assemblages vissés</a><a href="engrenages.html" class="" ><span class="nav-number">03</span>Engrenages droits</a><a href="torsion.html" class="active" aria-current="page"><span class="nav-number">04</span>Arbre en torsion</a><a href="clavette.html" class="" ><span class="nav-number">05</span>Clavette parallèle</a><a href="roulements.html" class="" ><span class="nav-number">06</span>Roulements</a><a href="courroie.html" class="" ><span class="nav-number">07</span>Courroie</a><a href="taraudage.html" class="" ><span class="nav-number">08</span>Perçage & taraudage</a><a href="rdm.html" class="" ><span class="nav-number">09</span>Résistance des matériaux</a><a href="thermo.html" class="" ><span class="nav-number">10</span>Thermodynamique</a><div class="nav-bottom"><span class="status-dot"></span> Calculs sur cet appareil<br><span>Vos saisies restent dans ce navigateur.</span></div></nav><main class="grid">
+<div class="page-heading"><div class="eyebrow">Résistance <span>/ 04</span></div><h1>Arbre en torsion</h1></div>
+<section class="card">
+<h2> Arbre en torsion (cylindre plein)</h2>
+<p class="subtle">J = π·d⁴/32, τ_max = 16·T/(π·d³). T (N·m), d &amp; L (mm), G (GPa).</p>
+<div class="row">
+<div class="col-4"><label>Couple T (N·m)</label><input id="tor_T" step="0.1" type="number" value="100"/></div>
+<div class="col-4"><label>Diamètre d (mm) (laisser vide pour dimensionner)</label><input id="tor_d" placeholder="ex: 25" step="0.1" type="number"/></div>
+<div class="col-4"><label>Longueur L (mm)</label><input id="tor_L" step="1" type="number" value="300"/></div>
+<div class="col-4"><label>Module de cisaillement G (GPa)</label><input id="tor_G" step="1" type="number" value="80"/></div>
+<div class="col-4"><label>τ admissible (MPa) (si dimensionnement)</label><input id="tor_tau" step="1" type="number" value="80"/></div>
+<div class="col-12"><button class="btn" onclick="calcTorsion()" type="button">Calculer torsion</button></div>
+</div>
+<div class="muted-box" id="out_tor" style="margin-top:12px" aria-live="polite">
+<details class="formulas-source" style="display:none"><summary class="subtle">Formules utilisées</summary><div class="mono subtle"><ul><li>τ = T·r/J</li><li>θ = T·L/(G·J)</li></ul></div></details>
+</div>
+</section>
+
+</main></div><footer><span>CléMéca</span><span>Par Clément Vincent</span></footer><script defer="True" src="reporting.js"></script></body></html>

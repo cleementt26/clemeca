@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Perçage taraudage – CléMéca">
+  <meta name="twitter:description" content="Outils de calculs méca : Perçage taraudage (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Perçage taraudage – CléMéca">
+  <meta property="og:description" content="Outils de calculs méca : Perçage taraudage (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+  <meta property="og:image" content="logo_vincent.png">
+  <link rel="icon" href="logo_vincent.png">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Outils de calculs méca : Perçage taraudage (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo)."><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Taraudage – CléMéca</title><link href="style.css" rel="stylesheet"/><script src="calculations.js" defer></script><script src="app.js" defer></script></head><body><a class="skip" href="#main">Aller au calculateur</a><header><a class="brand" href="index.html"><span class="brand-mark">c<span>m</span></span><span>CléMéca</span></a><span class="header-note">Mécanique & thermique</span></header><div class="container"><nav aria-label="Calculateurs"><div class="nav-label">ESPACE DE CALCUL</div><a href="index.html" class="" ><span class="nav-number">⌂</span>Accueil</a><div class="nav-label divider">CALCULATEURS</div><a href="ajustements.html" class="" ><span class="nav-number">01</span>Ajustements</a><a href="vissage.html" class="" ><span class="nav-number">02</span>Assemblages vissés</a><a href="engrenages.html" class="" ><span class="nav-number">03</span>Engrenages droits</a><a href="torsion.html" class="" ><span class="nav-number">04</span>Arbre en torsion</a><a href="clavette.html" class="" ><span class="nav-number">05</span>Clavette parallèle</a><a href="roulements.html" class="" ><span class="nav-number">06</span>Roulements</a><a href="courroie.html" class="" ><span class="nav-number">07</span>Courroie</a><a href="taraudage.html" class="active" aria-current="page"><span class="nav-number">08</span>Perçage & taraudage</a><a href="rdm.html" class="" ><span class="nav-number">09</span>Résistance des matériaux</a><a href="thermo.html" class="" ><span class="nav-number">10</span>Thermodynamique</a><div class="nav-bottom"><span class="status-dot"></span> Calculs sur cet appareil<br><span>Vos saisies restent dans ce navigateur.</span></div></nav><main class="grid">
+<div class="page-heading"><div class="eyebrow">Usinage <span>/ 08</span></div><h1>Perçage & taraudage</h1></div>
+<section class="card">
+<h2> Perçage pour taraudage métrique</h2>
+<p class="subtle">Règle pratique : Ø perçage ≈ d_nom − pas (coarse ISO ou pas personnalisé).</p>
+<div class="row">
+<div class="col-5">
+<label>Filetage métrique</label>
+<select id="tap_size" onchange="updateTapPitch()">
+<option value="M3">M3</option>
+<option value="M4">M4</option>
+<option value="M5">M5</option>
+<option value="M6">M6</option>
+<option value="M8">M8</option>
+<option value="M10">M10</option>
+<option value="M12">M12</option>
+<option value="M14">M14</option>
+<option value="M16">M16</option>
+<option value="M18">M18</option>
+<option value="M20">M20</option>
+</select>
+</div>
+<div class="col-3"><label>Pas (mm)</label><input id="tap_pitch" step="0.01" type="number"/></div>
+<div class="col-4"><label>Pas personnalisé ?</label>
+<select id="tap_series" onchange="updateTapPitch()">
+<option selected="" value="coarse">Coarse ISO (par défaut)</option>
+<option value="custom">Je saisis le pas</option>
+</select>
+</div>
+<div class="col-6"><button class="btn" onclick="calcTap()" type="button">Calculer Ø perçage</button></div>
+<div class="col-6">
+<label>Affichage</label>
+<select id="tap_unit" onchange="updateTapDisplay()">
+<option selected="" value="mm">mm + in</option>
+<option value="in">in + mm</option>
+</select>
+</div>
+</div>
+<div class="muted-box" id="out_tap" style="margin-top:12px" aria-live="polite">
+<details class="formulas-source" style="display:none"><summary class="subtle">Formules utilisées</summary><div class="mono subtle"><ul><li>D_perçage ≈ D_nominal − pas</li></ul></div></details>
+</div>
+</section>
+
+</main></div><footer><span>CléMéca</span><span>Par Clément Vincent</span></footer><script defer="True" src="reporting.js"></script></body></html>

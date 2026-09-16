@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Assemblages vissés – CléMéca">
+  <meta name="twitter:description" content="Outils de calculs méca : Assemblages vissés (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Assemblages vissés – CléMéca">
+  <meta property="og:description" content="Outils de calculs méca : Assemblages vissés (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+  <meta property="og:image" content="logo_vincent.png">
+  <link rel="icon" href="logo_vincent.png">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Outils de calculs méca : Assemblages vissés (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo)."><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Vissage – CléMéca</title><link href="style.css" rel="stylesheet"/><script src="calculations.js" defer></script><script src="app.js" defer></script></head><body><a class="skip" href="#main">Aller au calculateur</a><header><a class="brand" href="index.html"><span class="brand-mark">c<span>m</span></span><span>CléMéca</span></a><span class="header-note">Mécanique & thermique</span></header><div class="container"><nav aria-label="Calculateurs"><div class="nav-label">ESPACE DE CALCUL</div><a href="index.html" class="" ><span class="nav-number">⌂</span>Accueil</a><div class="nav-label divider">CALCULATEURS</div><a href="ajustements.html" class="" ><span class="nav-number">01</span>Ajustements</a><a href="vissage.html" class="active" aria-current="page"><span class="nav-number">02</span>Assemblages vissés</a><a href="engrenages.html" class="" ><span class="nav-number">03</span>Engrenages droits</a><a href="torsion.html" class="" ><span class="nav-number">04</span>Arbre en torsion</a><a href="clavette.html" class="" ><span class="nav-number">05</span>Clavette parallèle</a><a href="roulements.html" class="" ><span class="nav-number">06</span>Roulements</a><a href="courroie.html" class="" ><span class="nav-number">07</span>Courroie</a><a href="taraudage.html" class="" ><span class="nav-number">08</span>Perçage & taraudage</a><a href="rdm.html" class="" ><span class="nav-number">09</span>Résistance des matériaux</a><a href="thermo.html" class="" ><span class="nav-number">10</span>Thermodynamique</a><div class="nav-bottom"><span class="status-dot"></span> Calculs sur cet appareil<br><span>Vos saisies restent dans ce navigateur.</span></div></nav><main class="grid">
+<div class="page-heading"><div class="eyebrow">Assemblages <span>/ 02</span></div><h1>Assemblages vissés</h1></div>
+<section class="card">
+<h2> Assemblages vissés – précharge &amp; couple</h2>
+<p class="subtle">Modèle classique T ≈ K·F·d, avec F = r·R<sub>e</sub>·A<sub>s</sub>.</p>
+<div class="row">
+<div class="col-4">
+<label>Filetage (coarse)</label>
+<select id="thread">
+<option value="M6">M6 (p=1.0)</option>
+<option selected="" value="M8">M8 (p=1.25)</option>
+<option value="M10">M10 (p=1.5)</option>
+<option value="M12">M12 (p=1.75)</option>
+<option value="M16">M16 (p=2.0)</option>
+</select>
+</div>
+<div class="col-4">
+<label>Classe de vis</label>
+<select id="grade">
+<option value="8.8">8.8 (R<sub>e</sub>≈640 MPa)</option>
+<option selected="" value="10.9">10.9 (R<sub>e</sub>≈900 MPa)</option>
+<option value="12.9">12.9 (R<sub>e</sub>≈1080 MPa)</option>
+</select>
+</div>
+<div class="col-4">
+<label>État de friction</label>
+<select id="friction">
+<option value="0.22">Sec (~0,22)</option>
+<option selected="" value="0.18">Huilé (~0,18)</option>
+<option value="custom">Personnalisé…</option>
+</select>
+</div>
+<div class="col-4">
+<label>Coeff. K (si personnalisé)</label>
+<input id="K_custom" step="0.005" type="number" value="0.20"/>
+</div>
+<div class="col-4">
+<label>Ratio de précharge r (0–1)</label>
+<input id="r_ratio" step="0.05" type="number" value="0.7"/>
+</div>
+<div class="col-4">
+<label>Nb de vis en parallèle</label>
+<input id="n_bolts" step="1" type="number" value="1"/>
+</div>
+<div class="col-6">
+<label>Effort de séparation externe F<sub>ext</sub> (N)</label>
+<input id="F_ext" step="10" type="number" value="0"/>
+</div>
+
+<div class="col-12">
+<button class="btn" onclick="calcBolt()" type="button">Calculer la précharge &amp; le couple</button>
+<button class="btn secondary" onclick="resetBolt()" type="button">Réinitialiser</button>
+</div>
+</div>
+<div class="muted-box" id="out_vis" style="margin-top:12px" aria-live="polite">
+<details class="formulas-source" style="display:none"><summary class="subtle">Formules utilisées</summary><div class="mono subtle"><ul><li>T ≈ K·F·d</li><li>F ≈ r·(Rₑ·A)</li></ul></div></details>
+</div>
+</section>
+
+</main></div><footer><span>CléMéca</span><span>Par Clément Vincent</span></footer><script defer="True" src="reporting.js"></script></body></html>

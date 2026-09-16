@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ajustements – CléMéca">
+  <meta name="twitter:description" content="Outils de calculs méca : Ajustements (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ajustements – CléMéca">
+  <meta property="og:description" content="Outils de calculs méca : Ajustements (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo).">
+  <meta property="og:image" content="logo_vincent.png">
+  <link rel="icon" href="logo_vincent.png">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Outils de calculs méca : Ajustements (ajustements, vissage, engrenages, torsion, clavette, roulements, courroie, taraudage, RDM, thermo)."><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Ajustements – CléMéca</title><link href="style.css" rel="stylesheet"/><script src="calculations.js" defer></script><script src="app.js" defer></script></head><body><a class="skip" href="#main">Aller au calculateur</a><header><a class="brand" href="index.html"><span class="brand-mark">c<span>m</span></span><span>CléMéca</span></a><span class="header-note">Mécanique & thermique</span></header><div class="container"><nav aria-label="Calculateurs"><div class="nav-label">ESPACE DE CALCUL</div><a href="index.html" class="" ><span class="nav-number">⌂</span>Accueil</a><div class="nav-label divider">CALCULATEURS</div><a href="ajustements.html" class="active" aria-current="page"><span class="nav-number">01</span>Ajustements</a><a href="vissage.html" class="" ><span class="nav-number">02</span>Assemblages vissés</a><a href="engrenages.html" class="" ><span class="nav-number">03</span>Engrenages droits</a><a href="torsion.html" class="" ><span class="nav-number">04</span>Arbre en torsion</a><a href="clavette.html" class="" ><span class="nav-number">05</span>Clavette parallèle</a><a href="roulements.html" class="" ><span class="nav-number">06</span>Roulements</a><a href="courroie.html" class="" ><span class="nav-number">07</span>Courroie</a><a href="taraudage.html" class="" ><span class="nav-number">08</span>Perçage & taraudage</a><a href="rdm.html" class="" ><span class="nav-number">09</span>Résistance des matériaux</a><a href="thermo.html" class="" ><span class="nav-number">10</span>Thermodynamique</a><div class="nav-bottom"><span class="status-dot"></span> Calculs sur cet appareil<br><span>Vos saisies restent dans ce navigateur.</span></div></nav><main class="grid">
+<div class="page-heading"><div class="eyebrow">Assemblages <span>/ 01</span></div><h1>Ajustements</h1></div>
+<section class="card">
+<h2> Ajustements – jeu / serrage</h2>
+<p class="subtle">Saisissez les écarts de votre plan ou choisissez une classe tabulée. Les écarts et les résultats restent exprimés en millimètres.</p>
+<div class="row">
+<div class="col-4">
+<label>Diamètre nominal D (<span id="unitD">mm</span>)</label>
+<div class="row">
+<div class="col-8"><input id="D" oninput="onDChange()" step="0.001" type="number" value="20"/></div>
+<div class="col-4">
+<label style="visibility:hidden">Unité</label>
+<select id="unit_len" onchange="toggleUnitLen()">
+<option selected="" value="mm">mm</option>
+<option value="in">inch</option>
+</select>
+</div>
+</div>
+</div>
+<div class="col-4">
+<label>Mode de saisie</label>
+<select id="mode" onchange="refreshISO()">
+<option selected="" value="manual">Manuel</option>
+<option value="iso">Classes tabulées (H7/h6…)</option>
+</select>
+</div>
+<div class="col-4"></div>
+<div class="col-12" hidden="" id="isoFields">
+<div class="row">
+<div class="col-3">
+<label>Lettre trou</label>
+<select id="hole_letter" onchange="refreshISO()"><option selected>H</option><option>G</option></select>
+</div>
+<div class="col-3">
+<label>Qualité trou (IT)</label>
+<select id="hole_it" onchange="refreshISO()"><option>6</option><option selected>7</option><option>8</option></select>
+</div>
+<div class="col-3">
+<label>Lettre arbre</label>
+<select id="shaft_letter" onchange="refreshISO()"><option selected>h</option><option>g</option></select>
+</div>
+<div class="col-3">
+<label>Qualité arbre (IT)</label>
+<select id="shaft_it" onchange="refreshISO()"><option selected>6</option><option>7</option><option>8</option><option>9</option></select>
+</div>
+<div class="col-12 muted-box" id="isoPreview" style="margin-top:8px"></div>
+</div>
+</div>
+<div class="col-12" id="manualFields">
+<div class="row">
+<div class="col-6">
+<h3>Trou</h3>
+<div class="row">
+<div class="col-6">
+<label>Écart inférieur (EI<sub>H</sub>) [mm]</label>
+<input id="EI_hole" step="0.001" type="number" value="0"/>
+</div>
+<div class="col-6">
+<label>Écart supérieur (ES<sub>H</sub>) [mm]</label>
+<input id="ES_hole" step="0.001" type="number" value="0.021"/>
+</div>
+</div>
+</div>
+<div class="col-6">
+<h3>Arbre</h3>
+<div class="row">
+<div class="col-6">
+<label>Écart inférieur (EI<sub>S</sub>) [mm]</label>
+<input id="EI_shaft" step="0.001" type="number" value="-0.014"/>
+</div>
+<div class="col-6">
+<label>Écart supérieur (ES<sub>S</sub>) [mm]</label>
+<input id="ES_shaft" step="0.001" type="number" value="-0.004"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-12">
+<button class="btn" onclick="calcAjust()" type="button">Calculer le jeu/serrage</button>
+<button class="btn secondary" onclick="resetAjust()" type="button">Réinitialiser</button>
+</div>
+</div>
+<div class="muted-box" id="out_ajust" style="margin-top:12px" aria-live="polite">
+<details class="formulas-source" style="display:none"><summary class="subtle">Formules utilisées</summary><div class="mono subtle"><ul><li>IT, écarts sup/inf selon norme (rappel)</li></ul></div></details>
+</div>
+<details style="margin-top:10px"><summary class="subtle">Formules utilisées</summary>
+<div class="mono subtle">
+<p>H<sub>min</sub> = D + EI<sub>H</sub>,   H<sub>max</sub> = D + ES<sub>H</sub><br/>
+         S<sub>min</sub> = D + EI<sub>S</sub>,   S<sub>max</sub> = D + ES<sub>S</sub></p>
+<p>Jeu<sub>min</sub> = H<sub>min</sub> − S<sub>max</sub>  •  Jeu<sub>max</sub> = H<sub>max</sub> − S<sub>min</sub></p>
+
+</div>
+</details>
+</section>
+
+</main></div><footer><span>CléMéca</span><span>Par Clément Vincent</span></footer><script defer="True" src="reporting.js"></script></body></html>
