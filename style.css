@@ -8,3 +8,17 @@ header{height:76px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px);p
 @media(max-width:1150px){.container{grid-template-columns:210px minmax(0,1fr)}.tile{padding:23px}.header-note{display:block}.row>.col-4>.row{grid-template-columns:minmax(100px,1fr) 82px}}
 @media(max-width:760px){header{height:68px}.header-note{display:none}.container{display:block}nav{padding:10px 15px}.card{padding:23px 19px}.home h1{font-size:33px}.home .card>.subtle{font-size:15px}.tile,.tile:first-child{padding:21px;min-height:190px}.tiles{gap:13px}.col-8{grid-column:span 12}.row>.col-4>.row{grid-template-columns:minmax(120px,1fr) 90px}.row>.col-4>.row>.col-8{grid-column:auto}}
 .col-2{grid-column:span 3}.col-5{grid-column:span 5}.report-actions input#preset-name{width:auto;flex:1;min-width:160px}.report-actions select#preset-list{width:auto;max-width:100%}#D{min-width:100px}.row>.col-4:has(#D){grid-column:span 6}.row>.col-4:has(#mode){grid-column:span 6}.row>.col-4:empty{display:none}@media(max-width:760px){.col-2,.col-5,.row>.col-4:has(#D),.row>.col-4:has(#mode){grid-column:span 12}}
+/* Result blocks inside a parameter grid must occupy its full width. */
+.row > [id^="out_"]{grid-column:1 / -1;min-width:0;width:100%}
+.result-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
+.calc-diagram{margin:0 0 26px;padding:14px 20px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(160px,1fr);gap:22px;align-items:center;background:#f8f9fc;border:1px solid #eceef3;border-radius:14px}
+.calc-diagram svg{display:block;width:100%;max-width:420px;min-width:0;height:auto;max-height:210px;overflow:visible}
+.calc-diagram .drawing{stroke:#77818f;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.calc-diagram text{fill:#515157;stroke:none;font:16px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-anchor:middle}
+.calc-diagram .part{fill:#edf0f5;stroke:#9ba5b4}.calc-diagram .axis{stroke:#b9c1cc;stroke-dasharray:6 5;stroke-width:1}.calc-diagram .extension{stroke:#b5bdc9;stroke-width:1}
+.calc-diagram .effort,.calc-diagram .belt{stroke:#0071e3;stroke-width:2;fill:none}.calc-diagram .beam{stroke:#758399;stroke-width:7}.calc-diagram .support{stroke:#697689;stroke-width:3}.calc-diagram .support-shape{fill:#e5eaf2}
+.calc-diagram .highlight text{fill:#0066cc;font-weight:700}.calc-diagram .highlight line,.calc-diagram .highlight path{stroke:#0071e3;stroke-width:2.5}
+.calc-diagram figcaption{font-size:14px;line-height:1.65;color:#626976}.calc-diagram figcaption span{display:block;font-size:12px;color:#86868b;margin-top:10px}
+@media(max-width:1150px){.calc-diagram{grid-template-columns:1fr;gap:6px}.calc-diagram svg{margin:auto;max-width:410px}.calc-diagram figcaption{font-size:14px}}
+@media(max-width:520px){.calc-diagram{padding:12px}.calc-diagram svg{max-height:none}.calc-diagram text{font-size:19px}.result-grid{grid-template-columns:1fr}}
+@media print{.calc-diagram{break-inside:avoid;background:white}.calc-diagram svg{max-height:170px}}
