@@ -12,3 +12,11 @@
 .site-studio .brand-mark{background:transparent;display:block;width:38px;height:38px;line-height:0;border-radius:11px;overflow:hidden}.site-studio .brand-mark img{display:block;width:100%;height:100%}
 
 .studio-inputs #manualFields>.row{grid-template-columns:1fr}.studio-inputs #manualFields>.row>.col-6{grid-column:1/-1}
+/* Diagrams occupy their full panel; captions sit below, including wide desktops. */
+.site-studio .calc-diagram{grid-template-columns:minmax(0,1fr);gap:10px;justify-items:center}
+.site-studio .calc-diagram svg{width:100%;max-width:500px;max-height:310px;margin-inline:auto}
+.site-studio .calc-diagram figcaption{width:100%;text-align:center}
+.site-studio .calc-diagram .diagram-heading{width:100%}
+@media(max-width:600px){.site-studio .calc-diagram svg{max-width:440px;max-height:270px}}
+@media print{.site-studio .calc-diagram svg{max-height:190px}}
+@media(min-width:761px){.site-studio .calc-diagram .drawing{stroke-width:1.7}.site-studio .calc-diagram .drawing text{font-size:18px}}
