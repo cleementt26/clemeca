@@ -28,3 +28,18 @@
 .fit-zones{margin:24px 0 0;padding:20px 10px;background:var(--surface,#fff);border:1px solid var(--line,#d2d2d7);border-radius:22px;min-width:0}
 .fit-zones h3{margin:0 12px 8px;font-size:17px}.fit-zones svg{display:block;width:100%;height:auto;max-width:600px;margin:auto;color:inherit}.fit-zones text{fill:currentColor;font:17px -apple-system,BlinkMacSystemFont,sans-serif}.fit-zones figcaption{font-size:13px;color:var(--muted,#6e6e73);padding:8px 12px;line-height:1.5}
 [data-theme="dark"] .fit-zones{background:#1c1c1e}
+/* Formula appendix: a quieter, rounded surface distinct from the calculator. */
+.site-studio details.reference{border:1px solid #dce6f2;border-radius:28px;padding:0;background:#edf3fa;overflow:hidden;min-width:0;color:var(--ink)}
+.site-studio details.reference>summary{padding:24px 28px;cursor:pointer;color:#425d7c;line-height:1.6;font-weight:600;transition:background .18s ease}
+.site-studio details.reference>summary:hover{background:#e3edf8}
+.site-studio details.reference>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-5px;border-radius:24px}
+.site-studio details.reference[open]>summary{border-bottom:1px solid #dce6f2}
+.site-studio details.reference>p,.site-studio details.reference>a{margin:18px 28px;overflow-wrap:anywhere}
+.site-studio details.reference>a{display:block;font-size:13px;line-height:1.7}
+.site-studio details.reference>:last-child:not(summary){margin-bottom:24px}
+:root[data-theme=dark] .site-studio details.reference{background:#202c3b;border-color:#34445a}
+:root[data-theme=dark] .site-studio details.reference>summary{color:#c2d6ef}
+:root[data-theme=dark] .site-studio details.reference>summary:hover{background:#28374a}
+:root[data-theme=dark] .site-studio details.reference[open]>summary{border-color:#34445a}
+@media(max-width:600px){.site-studio details.reference{border-radius:23px}.site-studio details.reference>summary{padding:21px 20px}.site-studio details.reference>p,.site-studio details.reference>a{margin-inline:20px}}
+@media print{.site-studio details.reference{background:white!important;border:1px solid #ccc}.site-studio details.reference>summary{color:#333!important}}
