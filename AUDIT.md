@@ -61,3 +61,12 @@ Mode tabulé H7/h6 par défaut et après réinitialisation. Qualités non intég
 - Diagramme des ajustements : écarts déjà validés, convertis de mm en µm ; zéro commun, échelle verticale commune ; masqué dès modification ou erreur.
 - 46 contrôles nouveaux (valeurs connues, inversions, zéros, signes, champs vides, domaines numériques, rapports et diagramme), 136 contrôles des pages et rapports existants, 43 sélections de classes et réinitialisation vérifiés.
 - Signature : Clément VINCENT sur toutes les pages. Bibliothèque : 16 outils.
+
+
+## 17 septembre 2026 — chaînes de cotes
+- Nouveau calculateur linéaire 1D, 2 à 20 cotes, signes ±1, écarts inférieurs/supérieurs asymétriques en mm, condition facultative.
+- Au pire des cas : chaque contribution négative inverse ses bornes. Le contrôle de condition reste fondé sur cet intervalle, même en mode RSS.
+- RSS : centre calculé à partir du milieu réel de chaque intervalle (pas du nominal si les écarts sont asymétriques) ; demi-largeur quadratique obtenue avec hypot. Hypothèses affichées : indépendance, normalité, centrage et demi-largeur individuelle = 3σ. Pas de garantie de montage par RSS.
+- Références croisées : [H7g6, cotation fonctionnelle](https://www.h7g6.fr/data/article/24/cotation-fonctionnelle), [S. Bensaada, Université de Biskra](https://www.univ-biskra.dz/enseignant/bensaada/COTATION%20FONCTIONNELLE.pdf), [F. Scholz, Boeing, Tolerance Stack Analysis Methods](https://faculty.washington.edu/fscholz/Reports/babytol.pdf), méthodes arithmétiques et RSS.
+- Validation : 195 contrôles, dont énumération indépendante des 32 combinaisons extrêmes de 40 chaînes asymétriques, exemple publié de Biskra 40 H7/g6 → [0,009 ; 0,050] mm, exemple 50−20−29,5 = 0,5 mm avec bornes [0,3 ; 0,7], recentrage des tolérances unilatérales, domaines invalides, export des cotes actives uniquement, 20 cotes, sauvegarde/restauration et invalidation du schéma.
+- Le schéma est recalculé à partir des cotes nominales, sans animation décorative ; il montre la somme orientée et non une géométrie d’assemblage.
