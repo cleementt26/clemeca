@@ -43,3 +43,18 @@
 :root[data-theme=dark] .site-studio details.reference[open]>summary{border-color:#34445a}
 @media(max-width:600px){.site-studio details.reference{border-radius:23px}.site-studio details.reference>summary{padding:21px 20px}.site-studio details.reference>p,.site-studio details.reference>a{margin-inline:20px}}
 @media print{.site-studio details.reference{background:white!important;border:1px solid #ccc}.site-studio details.reference>summary{color:#333!important}}
+/* Soft ambient colour, rendered behind opaque working surfaces. */
+body.site-studio{isolation:isolate;--halo-blue:rgba(99,170,255,.22);--halo-lilac:rgba(180,142,243,.19);--halo-cyan:rgba(81,204,224,.16)}
+body.site-studio::before,body.site-studio::after{content:"";position:fixed;inset:-12vh -8vw;z-index:-1;pointer-events:none;background-repeat:no-repeat;transform-origin:center;animation:clemeca-halo-drift 34s ease-in-out infinite alternate}
+body.site-studio::before{background-image:radial-gradient(ellipse at 70% 17%,var(--halo-blue),transparent 49%),radial-gradient(ellipse at 31% 75%,var(--halo-lilac),transparent 47%)}
+body.site-studio::after{background-image:radial-gradient(ellipse at 92% 72%,var(--halo-cyan),transparent 48%);animation-name:clemeca-halo-float;animation-duration:43s}
+:root[data-theme=dark] body.site-studio{--halo-blue:rgba(47,108,207,.21);--halo-lilac:rgba(126,77,183,.18);--halo-cyan:rgba(32,152,170,.14)}
+@keyframes clemeca-halo-drift{from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(3%,4%,0) scale(1.06)}}
+@keyframes clemeca-halo-float{from{transform:translate3d(2%,3%,0) scale(1.03)}to{transform:translate3d(-3%,-3%,0) scale(1)}}
+body.ambient-paused::before,body.ambient-paused::after{animation-play-state:paused}
+.ambient-toggle{font:inherit;font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.ambient-toggle:hover{color:var(--accent);border-color:var(--accent)}.ambient-toggle:disabled{cursor:default;opacity:.7}
+.site-studio footer{gap:12px;flex-wrap:wrap}
+@media(max-width:760px){body.site-studio::before,body.site-studio::after{inset:-8vh -12vw}.ambient-toggle{font-size:11px}}
+@media(prefers-reduced-motion:reduce){body.site-studio::before,body.site-studio::after{animation:none!important}}
+@media print{body.site-studio::before,body.site-studio::after,.ambient-toggle{display:none!important}}

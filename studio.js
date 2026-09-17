@@ -1,6 +1,13 @@
 /* Shared presentation. Input IDs, calculation handlers and reporting stay intact. */
 document.addEventListener('DOMContentLoaded',()=>{
  document.body.classList.add('site-studio');
+ // Decoration only; the user's motion preference takes precedence.
+ const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ let paused=false;try{paused=localStorage.getItem('clemeca_ambient_paused')==='true';}catch{}
+ const motionButton=document.createElement('button');motionButton.type='button';motionButton.className='ambient-toggle';
+ function syncMotion(){document.body.classList.toggle('ambient-paused',paused||motion.matches);motionButton.textContent=motion.matches?'Fond fixe':paused?'Animer le fond':'Figer le fond';motionButton.disabled=motion.matches;motionButton.setAttribute('aria-label',motion.matches?'Animation désactivée selon votre préférence de réduction des mouvements':paused?'Activer l’animation du fond':'Mettre en pause l’animation du fond');}
+ motionButton.addEventListener('click',()=>{paused=!paused;try{localStorage.setItem('clemeca_ambient_paused',String(paused));}catch{}syncMotion();});
+ motion.addEventListener('change',syncMotion);syncMotion();document.querySelector('footer')?.append(motionButton);
  const mark=document.querySelector('.brand-mark');if(mark){mark.replaceChildren();const logo=document.createElement('img');logo.src='clemeca-icon.svg';logo.alt='';logo.width=38;logo.height=38;mark.append(logo);}
  const main=document.querySelector('main');
  if(!main||main.classList.contains('home')||/report/.test(location.pathname)||document.body.classList.contains('vibration-studio'))return;
