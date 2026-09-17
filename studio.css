@@ -20,3 +20,7 @@
 @media(max-width:600px){.site-studio .calc-diagram svg{max-width:440px;max-height:270px}}
 @media print{.site-studio .calc-diagram svg{max-height:190px}}
 @media(min-width:761px){.site-studio .calc-diagram .drawing{stroke-width:1.7}.site-studio .calc-diagram .drawing text{font-size:18px}}
+/* Tabulated fit selectors stay readable in the narrow parameter panel. */
+.studio-inputs #isoFields>.row{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.studio-inputs #isoFields>.row>.col-3{grid-column:auto;min-width:0}
+.studio-inputs #isoPreview{grid-column:1/-1;font-size:13px;line-height:1.7}

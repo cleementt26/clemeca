@@ -33,24 +33,24 @@
 <div class="col-4">
 <label>Mode de saisie</label>
 <select id="mode" onchange="refreshISO()">
-<option selected="" value="manual">Manuel</option>
-<option value="iso">Classes tabulées (H7/h6…)</option>
+<option selected="" value="iso">Classes tabulées (H7/h6…)</option>
+<option value="manual">Manuel</option>
 </select>
 </div>
 <div class="col-4"></div>
-<div class="col-12" hidden="" id="isoFields">
+<div class="col-12" id="isoFields">
 <div class="row">
 <div class="col-3">
 <label>Lettre trou</label>
-<select id="hole_letter" onchange="refreshISO()"><option selected>H</option><option>G</option></select>
+<select id="hole_letter" onchange="refreshISO()"><option>D</option><option>E</option><option>F</option><option>G</option><option selected>H</option><option>JS</option><option>K</option><option>M</option><option>N</option><option>P</option></select>
 </div>
 <div class="col-3">
 <label>Qualité trou (IT)</label>
-<select id="hole_it" onchange="refreshISO()"><option>6</option><option selected>7</option><option>8</option></select>
+<select id="hole_it" onchange="refreshISO()"><option>6</option><option selected>7</option><option>8</option><option>9</option></select>
 </div>
 <div class="col-3">
 <label>Lettre arbre</label>
-<select id="shaft_letter" onchange="refreshISO()"><option selected>h</option><option>g</option></select>
+<select id="shaft_letter" onchange="refreshISO()"><option>d</option><option>e</option><option>f</option><option>g</option><option selected>h</option><option>js</option><option>k</option><option>m</option><option>n</option><option>p</option></select>
 </div>
 <div class="col-3">
 <label>Qualité arbre (IT)</label>
@@ -59,7 +59,7 @@
 <div class="col-12 muted-box" id="isoPreview" style="margin-top:8px"></div>
 </div>
 </div>
-<div class="col-12" id="manualFields">
+<div class="col-12" hidden="" id="manualFields">
 <div class="row">
 <div class="col-6">
 <h3>Trou</h3>

@@ -5,17 +5,25 @@ function num(v,name){if(v===null||v===undefined||String(v).trim()==='')throw Err
 function pos(v,name,zero=false){const n=num(v,name);if(zero?n<0:n<=0)throw Error(name+' doit être '+(zero?'positif ou nul':'strictement positif')+'.');return n;}
 function integer(v,name,min=1){const n=num(v,name);if(!Number.isInteger(n)||n<min)throw Error(name+' doit être un entier ≥ '+min+'.');return n;}
 function finite(o){for(const v of Object.values(o))if(typeof v==='number'&&!Number.isFinite(v))throw Error('Valeurs hors du domaine numérique. Réduisez les ordres de grandeur.');return o;}
-// Tabulated common fits (µm): Takayama JIS B 0401-2 aligned ISO system, ranges (lower, upper].
+// Tabulated deviations in µm, MISUMI JIS B0401-2 (1998), 2024 catalogue p.1575.
+// Bounds are (previous, upper]; no extrapolation or approximate ISO formulas.
 const ranges=[3,6,10,18,30,50,80,120,180,250,315,400,500];
 const it={6:[6,8,9,11,13,16,19,22,25,29,32,36,40],7:[10,12,15,18,21,25,30,35,40,46,52,57,63],8:[14,18,22,27,33,39,46,54,63,72,81,89,97],9:[25,30,36,43,52,62,74,87,100,115,130,140,155]};
-const g=[2,4,5,6,7,9,10,12,14,15,17,18,20];
-function deviation(D,letter,grade){D=pos(D,'Le diamètre');const i=ranges.findIndex(upper=>D<=upper);if(i<0)throw Error('Les tables intégrées couvrent 0 < D ≤ 500 mm. Utilisez les écarts manuels au-delà.');grade=Number(grade);let a,b;
-if(letter==='H'&&[6,7,8].includes(grade)){a=0;b=it[grade][i];}
-else if(letter==='G'&&[6,7].includes(grade)){a=g[i];b=a+it[grade][i];}
-else if(letter==='h'&&[6,7,8,9].includes(grade)){b=0;a=-it[grade][i];}
-else if(letter==='g'&&grade===6){b=-g[i];a=b-it[6][i];}
-else throw Error('Classe non tabulée : utilisez la saisie manuelle des écarts de votre table de référence.');return {lower:a/1000,upper:b/1000};}
-const C={num,pos,integer,deviation,
+const fitGrades=Object.freeze({D:[8,9],E:[7,8,9],F:[6,7,8],G:[6,7],H:[6,7,8,9],JS:[6,7],K:[6,7],M:[6,7],N:[6,7],P:[6,7],d:[8,9],e:[7,8,9],f:[6,7,8],g:[6],h:[6,7,8,9],js:[6,7],k:[6],m:[6],n:[6],p:[6]});
+const clearance={D:[20,30,40,50,65,80,100,120,145,170,190,210,230],E:[14,20,25,32,40,50,60,72,85,100,110,125,135],F:[6,10,13,16,20,25,30,36,43,50,56,62,68],G:[2,4,5,6,7,9,10,12,14,15,17,18,20]};
+const shaftLower={k:[0,1,1,1,2,2,2,3,3,4,4,4,5],m:[2,4,6,7,8,9,11,13,15,17,20,21,23],n:[4,8,10,12,15,17,20,23,27,31,34,37,40],p:[6,12,15,18,22,26,32,37,43,50,56,62,68]};
+// Hole transition/interference deviations are grade-specific, NOT mirrored shafts.
+const holeUpper={K6:[0,2,2,2,2,3,4,4,4,5,5,7,8],K7:[0,3,5,6,6,7,9,10,12,13,16,17,18],M6:[-2,-1,-3,-4,-4,-4,-5,-6,-8,-8,-9,-10,-10],M7:[-2,0,0,0,0,0,0,0,0,0,0,0,0],N6:[-4,-5,-7,-9,-11,-12,-14,-16,-20,-22,-25,-26,-27],N7:[-4,-4,-4,-5,-7,-8,-9,-10,-12,-14,-14,-16,-17],P6:[-6,-9,-12,-15,-18,-21,-26,-30,-36,-41,-47,-51,-55],P7:[-6,-8,-9,-11,-14,-17,-21,-24,-28,-33,-36,-41,-45]};
+function deviation(D,letter,grade){D=pos(D,'Le diamètre');const i=ranges.findIndex(upper=>D<=upper);if(i<0)throw Error('Les tables intégrées couvrent 0 < D ≤ 500 mm. Utilisez les écarts manuels au-delà.');grade=Number(grade);if(!Object.hasOwn(fitGrades,letter)||!fitGrades[letter].includes(grade))throw Error('Classe non tabulée : utilisez la saisie manuelle des écarts de votre table de référence.');const width=it[grade][i];let a,b;
+if(letter==='H'){a=0;b=width;}
+else if(letter==='h'){a=-width;b=0;}
+else if(letter==='JS'||letter==='js'){a=-width/2;b=width/2;}
+else if(Object.hasOwn(holeUpper,letter+grade)){b=holeUpper[letter+grade][i];a=b-width;}
+else if(Object.hasOwn(shaftLower,letter)){a=shaftLower[letter][i];b=a+width;}
+else if(letter===letter.toUpperCase()){a=clearance[letter][i];b=a+width;}
+else{b=-clearance[letter.toUpperCase()][i];a=b-width;}
+return {lower:a/1000,upper:b/1000};}
+const C={num,pos,integer,deviation,fitGrades,
 fit(D,hl,hu,sl,su){D=pos(D,'Le diamètre');[hl,hu,sl,su]=[hl,hu,sl,su].map((v)=>num(v,'Chaque écart'));if(hl>hu||sl>su)throw Error('L’écart inférieur doit être inférieur ou égal à l’écart supérieur.');if(D+hl<=0||D+sl<=0)throw Error('Les diamètres minimaux doivent être positifs.');const min=hl-su,max=hu-sl;return finite({holeMin:D+hl,holeMax:D+hu,shaftMin:D+sl,shaftMax:D+su,min,max,nature:min===0&&max===0?'Contact exact':min>=0?'Avec jeu':max<=0?'Avec serrage':'Transition'});},
 gear(m,z1,z2,n1){m=pos(m,'Le module');z1=integer(z1,'Le nombre de dents du pignon',3);z2=integer(z2,'Le nombre de dents de la roue',3);n1=pos(n1,'La vitesse',true);return finite({d1:m*z1,d2:m*z2,da1:m*(z1+2),da2:m*(z2+2),df1:m*(z1-2.5),df2:m*(z2-2.5),a:m*(z1+z2)/2,ratio:z2/z1,n2:n1*z1/z2,undercut:z1<17||z2<17});},
 torsion(T,d,L,G,allow){T=num(T,'Le couple');L=pos(L,'La longueur');G=pos(G,'Le module de cisaillement');const limit=String(allow).trim()===''?null:pos(allow,'La contrainte admissible');if(String(d).trim()===''){if(!limit)throw Error('Renseignez une contrainte admissible pour dimensionner.');if(T===0)throw Error('Un couple nul ne permet pas de dimensionner un diamètre minimal utile.');return finite({dmin:Math.cbrt(16*Math.abs(T)*1000/(Math.PI*limit))});}d=pos(d,'Le diamètre');const tau=16*Math.abs(T)*1000/(Math.PI*d**3),theta=T*1000*L/((G*1000)*(Math.PI*d**4/32));return finite({tau,theta,deg:theta*180/Math.PI,ok:limit===null?null:tau<=limit});},

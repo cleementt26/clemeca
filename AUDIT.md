@@ -43,3 +43,13 @@ Références croisées avec les cours consultés de mécanique des fluides (Arts
 - Vibrations : oscillateur linéaire à 1 ddl, réponse à une force harmonique, amplitude crête et retard de phase avec atan2. Référence P. Steeneken (TU Delft), section 13.4, équation 13.65 : https://eng.libretexts.org/Bookshelves/Mechanical_Engineering/Introductory_Dynamics%3A_2D_Kinematics_and_Kinetics_of_Point_Masses_and_Rigid_Bodies_%28Steeneken%29/04%3A_Vibrations_and_Strategy/13%3A_Vibrations/13.04%3A_Forced_vibrations . Cas m=1 kg, k=100 N/m, c=2 N·s/m, F=10 N à ω=10 rad/s : X=0,5 m et retard 90°. La résonance non amortie avec force non nulle est refusée. Fréquence libre amortie non affichée pour ζ≥1.
 
 Validation : 43 assertions numériques/cas limites supplémentaires et 48 assertions nouvelles de pages, rapports, navigation, champs invalides et résultats périmés. Les 113 assertions numériques et 135 assertions fonctionnelles existantes restent applicables. Ces tests vérifient les modèles explicités, pas une certification de dimensionnement industriel.
+
+
+## Extension des ajustements — 17 septembre 2026
+
+43 classes, domaine 0 < D ≤ 500 mm, bornes supérieures incluses.
+Trous : D8/D9, E7/E8/E9, F6/F7/F8, G6/G7, H6/H7/H8/H9, JS6/JS7, K6/K7, M6/M7, N6/N7, P6/P7.
+Arbres : d8/d9, e7/e8/e9, f6/f7/f8, g6, h6/h7/h8/h9, js6/js7, k6, m6, n6, p6.
+Écarts entiers ou demi-entiers en micromètres, sans approximation ni extrapolation. Les trous K/M/N/P utilisent leurs tables propres à chaque qualité, et non une symétrie des arbres.
+Source principale : [MISUMI, catalogue 2024, JIS B0401-2 (1998)](https://sg.c.misumi-ec.com/book/MSEA_EconomySeries_e-Catalogue202401/files/basic-html/page1575.html). Contrôle croisé des classes communes sur [NSK, Super Precision Bearings, pp. 284–287](https://www.nsk.com/content/dam/nsk/common/catalogs/ctrgPdf/bearings/e1254.pdf). Comparaison complémentaire MISUMI 1986 : ne pas reprendre les anciennes valeurs js7 arrondies ; utiliser les demi-micromètres de 1998.
+Mode tabulé H7/h6 par défaut et après réinitialisation. Qualités non intégrées désactivées. Tests : 884 contrôles numériques et de bornes ; toutes les classes parcourues dans le formulaire avec génération du rapport, bascule manuelle et réinitialisation.
