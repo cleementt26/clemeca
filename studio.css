@@ -24,3 +24,7 @@
 .studio-inputs #isoFields>.row{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .studio-inputs #isoFields>.row>.col-3{grid-column:auto;min-width:0}
 .studio-inputs #isoPreview{grid-column:1/-1;font-size:13px;line-height:1.7}
+/* Quantitative tolerance zones: ample space for labels at desktop and mobile sizes. */
+.fit-zones{margin:24px 0 0;padding:20px 10px;background:var(--surface,#fff);border:1px solid var(--line,#d2d2d7);border-radius:22px;min-width:0}
+.fit-zones h3{margin:0 12px 8px;font-size:17px}.fit-zones svg{display:block;width:100%;height:auto;max-width:600px;margin:auto;color:inherit}.fit-zones text{fill:currentColor;font:17px -apple-system,BlinkMacSystemFont,sans-serif}.fit-zones figcaption{font-size:13px;color:var(--muted,#6e6e73);padding:8px 12px;line-height:1.5}
+[data-theme="dark"] .fit-zones{background:#1c1c1e}

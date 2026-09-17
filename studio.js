@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const results=[...card.querySelectorAll('[id^="out_"]')];
   const captions={out_th_heat:'Énergie thermique',out_th_ig:'Gaz parfaits'};
   results.forEach(result=>{if(captions[result.id]){const h=document.createElement('h3');h.className='studio-result-title';h.textContent=captions[result.id];output.append(h);}output.append(result);});
+  const zones=card.querySelector('#fit-zones');if(zones)output.append(zones);
   for(const node of [...card.childNodes])inputs.append(node);
   card.append(intro,inputs,output);
   if(!figure)output.classList.add('without-diagram');
