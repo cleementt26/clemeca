@@ -70,3 +70,10 @@ Mode tabulé H7/h6 par défaut et après réinitialisation. Qualités non intég
 - Références croisées : [H7g6, cotation fonctionnelle](https://www.h7g6.fr/data/article/24/cotation-fonctionnelle), [S. Bensaada, Université de Biskra](https://www.univ-biskra.dz/enseignant/bensaada/COTATION%20FONCTIONNELLE.pdf), [F. Scholz, Boeing, Tolerance Stack Analysis Methods](https://faculty.washington.edu/fscholz/Reports/babytol.pdf), méthodes arithmétiques et RSS.
 - Validation : 195 contrôles, dont énumération indépendante des 32 combinaisons extrêmes de 40 chaînes asymétriques, exemple publié de Biskra 40 H7/g6 → [0,009 ; 0,050] mm, exemple 50−20−29,5 = 0,5 mm avec bornes [0,3 ; 0,7], recentrage des tolérances unilatérales, domaines invalides, export des cotes actives uniquement, 20 cotes, sauvegarde/restauration et invalidation du schéma.
 - Le schéma est recalculé à partir des cotes nominales, sans animation décorative ; il montre la somme orientée et non une géométrie d’assemblage.
+
+
+## 1 octobre 2026 — Sections, flambement et ressorts
+Trois outils ajoutés (20 calculateurs au total). 47 contrôles numériques et d’intégration : valeurs de référence, changement d’échelle, domaines invalides, quatre sections, rapports et navigation.
+- Sections : aire, moments quadratiques, modules de flexion et rayons de giration ; géométries idéales, creux par soustraction. Penn State et Engineering Statics.
+- Flambement : Euler élastique idéal, quatre conditions d’appui, domaine élastique facultatif explicite ; ne constitue pas une vérification réglementaire. Penn State et Université de Ljubljana.
+- Ressorts : fil rond, extrémités rapprochées et meulées, raideur, effort, Wahl, hauteur jointive nominale et énergie. Sources Newcomb/SMI, Lee Spring et Wermke https://www.wermkespring.com/spring-load/.
