@@ -1,0 +1,10 @@
+.vm-help{color:var(--muted);font-size:12px;line-height:1.65;margin:0}
+.site-studio .vm-mohr svg{max-height:290px;overflow:visible}
+.vm-axis{fill:var(--muted);stroke:var(--muted);stroke-width:1;opacity:.75}
+.vm-axis text,.vm-end{stroke:none;font-size:16px;font-family:inherit;fill:var(--muted)}
+.vm-circle{fill:#0071e30a;stroke:var(--blue,#0071e3);stroke-width:2.4}
+.vm-diameter{stroke:var(--muted);stroke-width:1.3;stroke-dasharray:5 5}
+.vm-point{fill:#0071e3;stroke:var(--surface);stroke-width:1.2}
+.vm-point.secondary{fill:#9260d9}
+.vm-mohr[hidden]{display:none!important}
+@media(max-width:600px){.vm-axis text,.vm-end{font-size:18px}}

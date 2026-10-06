@@ -77,3 +77,14 @@ Trois outils ajoutés (20 calculateurs au total). 47 contrôles numériques et d
 - Sections : aire, moments quadratiques, modules de flexion et rayons de giration ; géométries idéales, creux par soustraction. Penn State et Engineering Statics.
 - Flambement : Euler élastique idéal, quatre conditions d’appui, domaine élastique facultatif explicite ; ne constitue pas une vérification réglementaire. Penn State et Université de Ljubljana.
 - Ressorts : fil rond, extrémités rapprochées et meulées, raideur, effort, Wahl, hauteur jointive nominale et énergie. Sources Newcomb/SMI, Lee Spring et Wermke https://www.wermkespring.com/spring-load/.
+
+
+## 6 octobre 2026 — Contraintes combinées / Von Mises
+21e calculateur : état de contraintes planes en un même point, ou arbre circulaire plein/creux en effort axial, flexion résultante et torsion. Comparaison des deux fibres extrêmes, contraintes principales triées avec la valeur hors plan nulle, cisaillement maximal 3D, seuil Re/n et cercle de Mohr avec échelles égales. Entrées signées, zéro, Re facultatif et modèles hors domaine gérés. Les changements de paramètres masquent le schéma et invalident les résultats jusqu’au nouveau calcul. Rapports et paramètres enregistrés intégrés.
+Validation : 163 contrôles numériques indépendants (références MIT, invariance par rotation, signes et échelles, fibres extrêmes, tube, zéro, seuils et erreurs), 34 contrôles d’interface et rapports. Affichage contrôlé en clair/sombre, ordinateur et mobile390px. Tests numériques reproductibles : `node von-mises.test.cjs`.
+Sources :
+- MIT 22.312 Note L.4, état plan, Mohr et Von Mises : https://ocw.mit.edu/courses/22-312-engineering-of-nuclear-reactors-fall-2015/eb49bc4f3e701be60ca651c5a109312f_MIT22_312F15_note_L4.pdf
+- Duke University, tenseur et transformations : https://people.duke.edu/~hpgavin/egr201/CourseNotes/stress-transformation.pdf
+- MIT 2.017J, arbres combinés : https://ocw.mit.edu/courses/2-017j-design-of-electromechanical-robotic-systems-fall-2009/16cb0f850752422026a85d838f30e340_MIT2_017JF09_machines.pdf
+- MIT 2.72, sections creuses : https://ocw.mit.edu/courses/2-72-elements-of-mechanical-design-spring-2009/36eed65f96add829d317d8d83b80bf30_MIT2_72s09_lec03.pdf
+Domaine : matériau ductile isotrope, calcul élastique statique. Fatigue, entailles, concentrations, effort tranchant transversal et flambement non inclus.

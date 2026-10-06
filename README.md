@@ -1,6 +1,6 @@
 # CléMéca
 
-Dix calculateurs de mécanique et de thermique, par Clément Vincent.
+21 calculateurs de mécanique et de thermique, par Clément Vincent.
 
 Interface en français, responsive, sans compte, sans serveur de calcul et sans suivi publicitaire. Les calculs s’effectuent dans le navigateur. Les paramètres et rapports enregistrés restent dans son stockage local ; ils ne se synchronisent pas entre appareils.
 
@@ -27,3 +27,7 @@ Les 113 assertions numériques peuvent être relancées avec Node.js : `node cal
 
 ## Ajouts du 16 septembre 2026
 Quatre calculateurs : vérins, pertes de charge, pompes et vibrations. Formules et limites accessibles sur chaque page. Validation numérique : `node extensions.test.cjs`. Les exemples sont modifiables ; les rendements, frottements et propriétés des fluides doivent correspondre au cas réel.
+
+
+## Contraintes combinées — 6 octobre 2026
+Arbre plein ou creux soumis à traction/compression, flexion et torsion ; ou saisie directe σx, σy, τxy au même point. Von Mises, contraintes principales, comparaison à Re avec coefficient visé, cercle de Mohr et rapports. Sources MIT/Duke et limites accessibles dans la page. Validation : `node von-mises.test.cjs` (163 contrôles numériques).
