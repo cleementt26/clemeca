@@ -8,7 +8,7 @@ async function page(file,query=''){
  const dom=new JSDOM(fs.readFileSync(path.join(root,file),'utf8'),{url:'https://cleementt26.github.io/clemeca/'+file+query,runScripts:'dangerously',virtualConsole:vc});
  const w=dom.window;w.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});w.scrollTo=()=>{};
  const scripts=[...w.document.querySelectorAll('script[src]')].map(s=>s.getAttribute('src'));
- for(const script of scripts){if(/^https?:/.test(script))continue;const el=w.document.createElement('script');el.textContent=fs.readFileSync(path.join(root,script),'utf8')+'\n//# sourceURL='+script;w.document.head.appendChild(el);}
+ for(const script of scripts){if(/^https?:/.test(script))continue;const el=w.document.createElement('script');el.textContent=fs.readFileSync(path.join(root,script.split('?')[0]),'utf8')+'\n//# sourceURL='+script;w.document.head.appendChild(el);}
  await new Promise(resolve=>w.document.addEventListener('DOMContentLoaded',()=>setTimeout(resolve,0),{once:true}));
  check(errors.length===0,file+' runtime errors: '+errors.join('; '));return {dom,w,errors};
 }
