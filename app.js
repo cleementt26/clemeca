@@ -62,10 +62,10 @@ function initialize(){
  if($('friction'))$('friction').addEventListener('change',toggleFriction);
  refreshISO();toggleFriction();rdmToggleSection();rdmLabels();toggleIG();toggleBelt();updateTapPitch();
  main.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('input,select')){const scope=slug==='thermo'?(e.target.id.startsWith('ig_')?'calcThermoIG':'calcThermoHeat'):null;if(scope){e.preventDefault();window[scope]();}else{const button=main.querySelector('button[onclick^="calc"]');if(button){e.preventDefault();button.click();}}}});
- const qs=new URLSearchParams(location.search);let restored=false;for(const [key,value] of qs){const el=$(key);if(el&&el.matches('main input,main select')&&!el.disabled){el.value=value;restored=true;}}
+ const qs=new URLSearchParams(location.search);let restored=false;for(const [key,value] of qs){const el=$(key);if(el&&el.matches('main input,main select')&&!el.disabled){el.value=value;if(slug==='conversion'&&key==='lib_category'&&window.syncLibrary)syncLibrary();restored=true;}}
  if(restored){currentUnit=v('unit_len')||'mm';rdmCurrentUnit=v('rdm_unit')||'mm';rdmLabels();refreshISO();toggleFriction();rdmToggleSection();toggleIG();toggleBelt();updateTapPitch();}
  // A useful first result comes from the clearly editable example values.
- const btn=main.querySelector('button[onclick^="calc"]');if(btn)btn.click();if(slug==='thermo')calcThermoIG();
+ const btn=main.querySelector('button[onclick^="calc"]');if(btn&&!btn.hasAttribute('data-no-auto'))btn.click();if(slug==='thermo')calcThermoIG();
 }
 document.addEventListener('DOMContentLoaded',initialize);
 let rdmCurrentUnit='mm';

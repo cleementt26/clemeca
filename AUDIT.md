@@ -88,3 +88,38 @@ Sources :
 - MIT 2.017J, arbres combinés : https://ocw.mit.edu/courses/2-017j-design-of-electromechanical-robotic-systems-fall-2009/16cb0f850752422026a85d838f30e340_MIT2_017JF09_machines.pdf
 - MIT 2.72, sections creuses : https://ocw.mit.edu/courses/2-72-elements-of-mechanical-design-spring-2009/36eed65f96add829d317d8d83b80bf30_MIT2_72s09_lec03.pdf
 Domaine : matériau ductile isotrope, calcul élastique statique. Fatigue, entailles, concentrations, effort tranchant transversal et flambement non inclus.
+# Compléments indépendants — 20 octobre 2026
+
+Dix outils ont été ajoutés après comparaison avec le catalogue public h7g6. Les outils déjà présents n’ont pas été dupliqués. Les listes de sélection commerciales et algorithmes protégés ne sont pas repris ; les calculs nouveaux sont documentés dans `library-data.js` et dans chaque page.
+
+## Portée et limites
+
+- Conversions : facteurs de NIST SP 811 / SI ; origine affine pour °C/°F/K, seuil du zéro absolu contrôlé.
+- Masse : géométrie de solides idéalisés × masse volumique × quantité. Gravité conventionnelle 9,80665 m/s².
+- Cycle : vitesse nulle aux deux extrémités de chaque mouvement, accélération/décélération constantes, étapes séquentielles. Le compteur global répète le cycle complet sans délai caché entre répétitions.
+- Allocation de tolérance : les poids sont explicites et le budget est un **demi-intervalle ±**. RSS n’est pas une garantie au pire des cas ; hypothèses statistiques affichées, pas de classes ISO synthétisées.
+- Bagues : contraintes géométriques aux deux extrémités de chaque bague ; optimisation de l’enveloppe dans un modèle de droite rigide à petits angles. Le diamètre minimal de l’arbre et les alésages maximaux sont saisis par l’utilisateur. H part du centre de la première bague. La plage totale est 2 × amplitude, pas une confusion entre jeux radial et diamétral.
+- Sécurité : simple addition de budgets de temps disjoints et de distances renseignées. Pas de choix du cas normatif, pas de coefficients recommandés par défaut. Aucune installation ou modification de dispositif ne doit se baser sur ce calcul seul.
+- Anneaux : contraintes × aires idéalisées de gorge, limitées par une capacité d’anneau **déjà connue du fabricant**. Flexion de bord, éjection, contact réel, fatigue et charges excentrées/dynamiques non calculés. Les équations élémentaires ne sont pas présentées comme la méthode complète d’un fabricant.
+- Vis : formules de rendement et de couple vérifiées auprès de Roton et THK ; conversions mm → m explicites. Demi-angle axial corrigé dans le plan normal pour la vis trapézoïdale. L’autoblocage théorique n’est pas une fonction de sécurité.
+- Guidage : quatre appuis de raideur égale, sur rectangle, force normale et moments de roulis/tangage seulement. Les charges restent signées. Le modèle ne sait pas combiner les efforts latéraux et les capacités directionnelles d’une référence réelle. La distance de référence de C (50 ou 100 km) doit correspondre au catalogue.
+
+## Contrôles
+
+459 assertions sur utilitaires, 62 sur translation, 64 sur pré-études, puis 141 vérifications DOM (31 outils, rapports, états initial/erreur, restauration des conversions). Les suites historiques passent également : 113, 43 et 163 vérifications. Ces essais ne sont pas une certification de dimensionnement.
+
+Références :
+
+- https://www.nist.gov/pml/special-publication-811
+- https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure
+- https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-appendix-law-propagation-uncertainty
+- https://www.thorlabs.com/images/TabImages/24789-D02.pdf
+- https://www.roton.com/screw-university/formula-calculators/
+- https://www.thk.com/eu/en/products/ball_screw/selection/0010/
+- https://www.thk.com/eu/en/products/ball_screw/selection/0013/
+- https://www.thk.com/us/en/products/lm_guide_actuator/selection/0005/
+- https://www.leuze.com/en-us/contact-and-support/specialist-knowledge/safety-at-work/calculation-wizards
+- https://www.sick.com/cz/en/from-theory-to-safe-implementation-/w/blog-separation-distance-iso-138552024-interview
+- https://www.smalley.com/ring-design/load-capacity
+
+---
