@@ -4,7 +4,19 @@
 const groups={contraintes:'Résistance',sections:'Résistance',flambement:'Résistance',ressorts:'Assemblages',chaines:'Assemblages',puissance:'Transmission',dilatation:'Thermique',ajustements:'Assemblages',vissage:'Assemblages',clavette:'Assemblages',taraudage:'Assemblages',engrenages:'Transmission',roulements:'Transmission',courroie:'Transmission',torsion:'Résistance',rdm:'Résistance',thermo:'Thermique',verins:'Fluides',fluides:'Fluides',pompes:'Fluides',vibrations:'Dynamique'};
 if(window.LibraryTools)for(const [key,t] of Object.entries(LibraryTools))groups[key]=t.group;
 const paths={contraintes:'M5 5h14v14H5zM12 2v3m0 14v3M2 12h3m14 0h3M8 8l8 8m-8 0 8-8',sections:'M4 5h16v14H4zM12 2v20M2 12h20',flambement:'M12 3q12 9 0 18M7 3h10M7 21h10',ressorts:'M6 3h12M12 3v2L6 7l12 3-12 3 12 3-6 3v2M6 21h12',chaines:'M3 6h8m-3-3 3 3-3 3M21 12H9m3-3-3 3 3 3M3 19h18M3 16v6m18-6v6',puissance:'M4 12h16M15 7l5 5-5 5M8 4a8 8 0 0 0 0 16',dilatation:'M3 9h18v6H3zM3 4v3m18-3v3M7 4h10',index:'M3 11L12 3l9 8M6 10v11h12V10M10 21v-7h4v7',ajustements:'M4 4h16v16H4zM8 8h8v8H8z',vissage:'M8 3h8v5H8zM10 8v13h4V8M9 12h6m-6 4h6',clavette:'M4 9h16v8H4zM8 9V5h8v4',taraudage:'M7 3v18m10-18v18M7 5l10 4M7 10l10 4M7 15l10 4',engrenages:'M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10l2 2M5 19l2-2M17 7l2-2M18 12a6 6 0 1 1-12 0 6 6 0 1 1 12 0M14 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0',roulements:'M21 12a9 9 0 1 1-18 0 9 9 0 1 1 18 0M16 12a4 4 0 1 1-8 0 4 4 0 1 1 8 0M12 5v1m0 12v1M5 12h1m12 0h1',courroie:'M7 4h10a4 4 0 0 1 0 8H7a4 4 0 0 1 0-8M7 4v8m10-8v8M4 20h16',torsion:'M5 7h14v10H5zM3 12h18M17 3l3 2-3 2m3-2H9',rdm:'M3 13h18M5 14l-3 6h6zM19 14l-3 6h6zM12 2v8m-3-3 3 3 3-3',thermo:'M10 4a2 2 0 0 1 4 0v10a4 4 0 1 1-4 0V4M12 8v9',verins:'M3 6h13v12H3zM10 6v12m0-6h12',fluides:'M2 7h20M2 17h20M5 12h13m-3-3 3 3-3 3',pompes:'M18 12a6 6 0 1 1-12 0 6 6 0 1 1 12 0M10 9l5 3-5 3zM2 12h4m12 0h4',vibrations:'M2 12c3-14 5-14 8 0s5 14 8 0 3-8 4-8'};
-const icon=key=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="${paths[key]||paths.index}"/></svg>`;
+Object.assign(paths,{
+ conversion:'M4 7h15l-4-4m4 4-4 4M20 17H5l4-4m-4 4 4 4',
+ masse:'M9 6a3 3 0 1 1 6 0M8 6h8l4 15H4zM9 14h6',
+ cycle:'M9 2h6M12 2v3M18 5l2 2M20 13a8 8 0 1 1-16 0 8 8 0 1 1 16 0M12 9v5l3 2',
+ repartition:'M3 6h18M3 3v6m18-6v6M3 17h18M3 14v6m6-6v6m6-6v6m6-6v6M9 6v3m6-3v3',
+ jeuangulaire:'M5 5h4v14H5zM15 5h4v14h-4zM2 15l20-6M2 18l20-6',
+ securite:'M12 2l7 3v5c0 5-3 8-7 11-4-3-7-6-7-11V5zM9 10l3-3 3 3M12 7v8',
+ anneaux:'M8 3a9 9 0 1 0 8 0M8 3l2 6a4 4 0 1 0 4 0l2-6M6 5h.01M18 5h.01',
+ visbilles:'M2 10h20v4H2zM5 10l3 4m1-4 3 4m1-4 3 4m1-4 3 4M9 6h6v12H9zM11 8h2m-2 8h2',
+ vistrapezoidale:'M2 16h2l2-7h2l2 7h2l2-7h2l2 7h2l2-7M3 21h18M3 19v3m18-3v3',
+ guidages:'M2 6h20M2 18h20M5 3h4v6H5zM15 3h4v6h-4zM5 15h4v6H5zM15 15h4v6h-4zM9 12h6m-2-2 2 2-2 2'
+});
+const icon=key=>`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="${paths[key]||'M4 3h16v18H4zM7 7h10M7 11h2m4 0h4M7 15h2m4 0h4'}"/></svg>`;
 const keyOf=a=>a.getAttribute('href').split('/').pop().replace('.html','');
 let saved;try{saved=localStorage.getItem('clemeca_theme');}catch{}
 const mq=typeof matchMedia==='function'?matchMedia('(prefers-color-scheme: dark)'):null;
